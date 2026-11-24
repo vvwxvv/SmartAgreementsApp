@@ -1,0 +1,188 @@
+[
+  {
+    "app_footer_en": "Agreement",
+    "app_footer_cn": "Agreement",
+    "app_footer_start_year": 2026,
+    "app_footer_rights_en": "All rights reserved",
+    "app_footer_rights_cn": "保留所有权利",
+    "menu": {
+      "mainMenu": {
+        "en": [],
+        "cn": []
+      },
+      "managerMenu": {
+        "en": [
+          {
+            "label": "Data Factory",
+            "href": "/manager/tools"
+          },
+          {
+            "label": "Other",
+            "href": "/manager/agreement",
+            "dropdown": [
+              {
+                "label": "Agreement",
+                "href": "/manager/agreement"
+              },
+              {
+                "label": "AgreementSigner",
+                "href": "/manager/agreement-signer"
+              },
+              {
+                "label": "SigningEvent",
+                "href": "/manager/signing-event"
+              },
+              {
+                "label": "User",
+                "href": "/manager/user"
+              },
+              {
+                "label": "Session",
+                "href": "/manager/session"
+              },
+              {
+                "label": "LoginCode",
+                "href": "/manager/login-code"
+              }
+            ]
+          },
+          {
+            "label": "Site Meta",
+            "href": "/manager/meta"
+          }
+        ],
+        "cn": [
+          {
+            "label": "数据工厂",
+            "href": "/manager/tools"
+          },
+          {
+            "label": "其他",
+            "href": "/manager/agreement",
+            "dropdown": [
+              {
+                "label": "Agreement",
+                "href": "/manager/agreement"
+              },
+              {
+                "label": "AgreementSigner",
+                "href": "/manager/agreement-signer"
+              },
+              {
+                "label": "SigningEvent",
+                "href": "/manager/signing-event"
+              },
+              {
+                "label": "User",
+                "href": "/manager/user"
+              },
+              {
+                "label": "Session",
+                "href": "/manager/session"
+              },
+              {
+                "label": "LoginCode",
+                "href": "/manager/login-code"
+              }
+            ]
+          },
+          {
+            "label": "站点信息",
+            "href": "/manager/meta"
+          }
+        ]
+      }
+    },
+    "seo": {
+      "title": "the reference app Gallery – Contemporary Art Exhibitions & Artists",
+      "description": "the reference app Gallery showcases contemporary art exhibitions that connect Eastern and Western perspectives. Discover our artists, upcoming shows, and cultural events in a space dedicated to humanist legacy and creative exchange.",
+      "keywords": "the reference app Gallery, contemporary art gallery, exhibitions, artists, East West, cultural dialogue, art shows, gallery events",
+      "og_image": "/placeholder.png",
+      "icon": "/favicon.ico",
+      "manifest": "/manifest.json",
+      "canonical": ""
+    },
+    "formTypes": {
+      "artwork": [
+        {
+          "label_en": "Video",
+          "label_cn": "录像"
+        },
+        {
+          "label_en": "Moving Images",
+          "label_cn": "影像"
+        },
+        {
+          "label_en": "Installation",
+          "label_cn": "装置"
+        },
+        {
+          "label_en": "Mixed Media",
+          "label_cn": "综合材料"
+        },
+        {
+          "label_en": "Photography",
+          "label_cn": "摄影"
+        },
+        {
+          "label_en": "Sculpture",
+          "label_cn": "雕塑"
+        },
+        {
+          "label_en": "Drawing",
+          "label_cn": "素描"
+        },
+        {
+          "label_en": "Printmaking",
+          "label_cn": "版画"
+        },
+        {
+          "label_en": "Painting",
+          "label_cn": "绘画"
+        },
+        {
+          "label_en": "Other",
+          "label_cn": "其他"
+        }
+      ],
+      "exhibition": [
+        {
+          "label_en": "Solo Exhibition",
+          "label_cn": "个展"
+        },
+        {
+          "label_en": "Group Exhibition",
+          "label_cn": "群展"
+        },
+        {
+          "label_en": "Dual Exhibition",
+          "label_cn": "双人展"
+        },
+        {
+          "label_en": "Museum Exhibition",
+          "label_cn": "美术馆展览"
+        },
+        {
+          "label_en": "Art Fair",
+          "label_cn": "艺博会"
+        },
+        {
+          "label_en": "Other",
+          "label_cn": "其他"
+        }
+      ],
+      "fair": [
+        {
+          "label_en": "Art Fair",
+          "label_cn": "艺博会"
+        },
+        {
+          "label_en": "Other",
+          "label_cn": "其他"
+        }
+      ]
+    },
+    "updatedAt": "2026-11-24T02:56:51.573Z",
+    "_id": "4559a1ec99ddc12dc7856ee9"
+  }
+]

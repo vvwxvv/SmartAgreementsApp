@@ -1,0 +1,102 @@
+{
+  "mainMenu": {
+    "en": [],
+    "cn": []
+  },
+  "managerMenu": {
+    "en": [
+      {
+        "label": "Site Meta",
+        "href": "/manager/meta"
+      },
+      {
+        "label": "Data Factory",
+        "href": "/manager/tools"
+      },
+      {
+        "label": "Other",
+        "href": "/manager/agreement",
+        "model": "agreement",
+        "dropdown": [
+          {
+            "label": "Agreement",
+            "href": "/manager/agreement",
+            "model": "agreement"
+          },
+          {
+            "label": "AgreementSigner",
+            "href": "/manager/agreement-signer",
+            "model": "agreement-signer"
+          },
+          {
+            "label": "SigningEvent",
+            "href": "/manager/signing-event",
+            "model": "signing-event"
+          },
+          {
+            "label": "User",
+            "href": "/manager/user",
+            "model": "user"
+          },
+          {
+            "label": "Session",
+            "href": "/manager/session",
+            "model": "session"
+          },
+          {
+            "label": "LoginCode",
+            "href": "/manager/login-code",
+            "model": "login-code"
+          }
+        ]
+      }
+    ],
+    "cn": [
+      {
+        "label": "站点信息",
+        "href": "/manager/meta"
+      },
+      {
+        "label": "数据工厂",
+        "href": "/manager/tools"
+      },
+      {
+        "label": "其他",
+        "href": "/manager/agreement",
+        "model": "agreement",
+        "dropdown": [
+          {
+            "label": "Agreement",
+            "href": "/manager/agreement",
+            "model": "agreement"
+          },
+          {
+            "label": "AgreementSigner",
+            "href": "/manager/agreement-signer",
+            "model": "agreement-signer"
+          },
+          {
+            "label": "SigningEvent",
+            "href": "/manager/signing-event",
+            "model": "signing-event"
+          },
+          {
+            "label": "User",
+            "href": "/manager/user",
+            "model": "user"
+          },
+          {
+            "label": "Session",
+            "href": "/manager/session",
+            "model": "session"
+          },
+          {
+            "label": "LoginCode",
+            "href": "/manager/login-code",
+            "model": "login-code"
+          }
+        ]
+      }
+    ]
+  }
+}

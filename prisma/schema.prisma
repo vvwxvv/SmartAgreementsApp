@@ -1,0 +1,205 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("MONGODB_URL")
+}
+
+// ─── 签署业务 ───────────────────────────────────────────────
+model Agreement {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  number       String    @unique
+  createdById  String
+  title        String
+  body         String
+  consentText  String
+  category     String?
+  titleEn      String?
+  bodyEn       String?
+  consentTextEn String?
+  lang         String?
+  status       String    @default("DRAFT")
+  contentHash  String?
+  revision     Int       @default(0)
+  parties      Json?
+  fieldValues  Json?
+  templateId   String?
+  templateVersion Int?
+  templateBody String?
+  layoutConfig Json?
+  expiresAt    DateTime?
+  signDeadline DateTime?
+  termMonths   Int?
+  termEnd      DateTime?
+  termEndExplicit Boolean?
+  effectiveAt  DateTime?
+  effectiveMode String?
+  hashV        Int?
+  renewalStatus   String?
+  renewalDeadline DateTime?
+  renewalClaimAt  DateTime?
+  renewalOf    String?   @db.ObjectId
+  renewedFrom  String?   @db.ObjectId
+  renewedBy    String?   @db.ObjectId
+  sentAt       DateTime?
+  completedAt  DateTime?
+  completionHash String?
+  completionSig  String?
+  completionKeyId String?
+  completionSigAlg String?
+  declinedAt   DateTime?
+  declinedBy   String?   @db.ObjectId
+  declineReason String?
+  voidedAt     DateTime?
+  voidReason   String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  language     String?   // generated-shell field; the signing core writes lang
+
+  @@index([createdById, createdAt])
+  @@index([status, createdAt])
+}
+
+model AgreementSigner {
+  id               String    @id @default(auto()) @map("_id") @db.ObjectId
+  agreementId      String    @db.ObjectId
+  email            String
+  label            String?
+  labelEn          String?
+  partyKey         String?
+  order            Int       @default(0)
+
+  signedName       String?
+  signedIp         String?
+  signatureHash    String?
+  signatureSig     String?
+  signatureKeyId   String?
+  signatureSigAlg  String?
+  signedAt         DateTime?
+  emailVerifiedAt  DateTime?
+  signatureImage   String?
+  ipHash           String?
+  uaHash           String?
+  contentHash      String?
+
+  accessTokenHash  String?   @unique
+  accessTokenEnc   String?
+  accessCodeHash   String?
+  accessPatternHash String?
+  tsaUrl           String?
+  tsaTime          String?
+  tsaToken         String?
+  declinedAt       DateTime?
+  declineReason    String?
+  unlockAttempts   Int      @default(0)
+  codeHash         String?
+  codeExpiresAt    DateTime?
+  codeAttempts     Int       @default(0)
+  codeSentAt       DateTime?
+
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  language         String?
+
+  @@unique([agreementId, email])
+  @@index([agreementId, order])
+  @@index([email])
+}
+
+model SigningEvent {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  agreementId String   @db.ObjectId
+  signerId    String?
+  type        String
+  at          DateTime @default(now())
+  ipHash      String?
+  meta        String?
+
+  language    String?
+
+  @@index([agreementId, at])
+}
+
+// ─── 运营商登录 ─────────────────────────────────────────────
+model Meta {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  // ── App identity (bilingual) ────────────────────────────────────────────
+  app_title_en          String?
+  app_title_cn          String?
+  app_type              String?
+  app_category          String?
+  app_version           String?
+  app_purpose           String?
+  app_description_en    String?
+  app_description_cn    String?
+
+  // ── Footer (bilingual) ──────────────────────────────────────────────────
+  app_footer_en         String?
+  app_footer_cn         String?
+  app_footer_start_year Int?
+  app_footer_rights_en  String?
+  app_footer_rights_cn  String?
+
+  // ── Website ─────────────────────────────────────────────────────────────
+  web_url               String?
+
+  // ── Menus / SEO / entity + form settings ────────────────────────────────
+  menu                  Json?
+  seo                   Json?
+  galleryEntities       Json?
+  formTypes             Json?
+
+  updatedAt             DateTime @updatedAt
+}
+
+// ─── PartyInfo (P2-2a-1b) ────────────────────────────────────────────────
+// Address book only. No identity documents, bank accounts or other sensitive
+// payment/identity data is stored by this application.
+model PartyInfo {
+  id                  String    @id @default(auto()) @map("_id") @db.ObjectId
+  kind                String    @default("person")
+  name                String
+  nameEn              String?
+  contactPerson       String?
+  legalRepresentative String?
+  email               String?
+  phone               String?
+  wechat              String?
+  address             String?
+  addressEn           String?
+  postalCode          String?
+  note                String?
+  isSelf              Boolean   @default(false)
+  lang                String?
+  archivedAt          DateTime?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+
+  @@index([name])
+  @@index([email])
+}
+
+// ─── 编号计数器（业务辅助，非合同数据） ───────────────────────
+model Counter {
+  id  String @id @map("_id")
+  seq Int
+}
+
+// ─── 管理入口 ──────────────────────────────────────────────────────────────
+// Singleton document; _id is the literal string "gate", not an ObjectId.
+model AdminGate {
+  id        String   @id @map("_id")
+  p1        String?
+  p2        String?
+  totpSecret   String?
+  totpEnabled  Boolean?
+  totpLastStep Int?
+  totpUpdatedAt DateTime?
+  totpUsedAt   DateTime?
+  createdAt DateTime?
+  updatedAt DateTime?
+}

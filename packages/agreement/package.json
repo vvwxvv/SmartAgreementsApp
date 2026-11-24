@@ -1,0 +1,49 @@
+{
+  "name": "@yourorg/agreement",
+  "version": "0.1.0-p1",
+  "private": true,
+  "type": "module",
+  "description": "Signing module for Next.js App Router: paper-like UI, bearer invite links, evidence records.",
+  "exports": {
+    ".": "./src/index.js",
+    "./core": "./src/core/index.js",
+    "./core/adapters/mongo": "./src/core/adapters/mongo.js",
+    "./next": "./src/next/index.js",
+    "./next/api": "./src/next/api.js",
+    "./next/sign-page": "./src/next/sign-page.js",
+    "./next/print-page": "./src/next/print-page.js",
+    "./react": "./src/react/index.js",
+    "./styles.css": "./src/styles.css",
+    "./package.json": "./package.json",
+    "./core/adapters/file": "./src/core/adapters/file.js"
+  },
+  "bin": {
+    "agreement": "./bin/agreement.js"
+  },
+  "peerDependencies": {
+    "next": ">=15",
+    "react": ">=19",
+    "react-markdown": ">=9",
+    "remark-gfm": ">=4"
+  },
+  "peerDependenciesMeta": {
+    "mongodb": {
+      "optional": true
+    },
+    "playwright-core": {
+      "optional": true
+    },
+    "react-markdown": {
+      "optional": true
+    },
+    "remark-gfm": {
+      "optional": true
+    }
+  },
+  "optionalDependencies": {},
+  "files": [
+    "bin",
+    "src",
+    "README.md"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "agreement": {
+    "filterOptions": {},
+    "formOptions": {},
+    "sortOptions": {}
+  },
+  "agreement_signer": {
+    "filterOptions": {},
+    "formOptions": {},
+    "sortOptions": {}
+  },
+  "signing_event": {
+    "filterOptions": {},
+    "formOptions": {},
+    "sortOptions": {}
+  },
+  "user": {
+    "filterOptions": {},
+    "formOptions": {},
+    "sortOptions": {}
+  },
+  "session": {
+    "filterOptions": {},
+    "formOptions": {},
+    "sortOptions": {}
+  },
+  "login_code": {
+    "filterOptions": {},
+    "formOptions": {},
+    "sortOptions": {}
+  }
+}

@@ -1,0 +1,11 @@
+import fs from 'node:fs';
+const dir = 'D:/ClientsWebsites/_backups/SmartAgreementApp/local-collections-2026-11-22T05-04-15-367Z';
+const read = (n) => JSON.parse(fs.readFileSync(dir + '/' + n + '.json', 'utf8'));
+const ags = read('Agreement'), signers = read('AgreementSigner'), events = read('SigningEvent'), parties = read('PartyInfo');
+const a = ags.find((x) => x.number === 'AGR-2026-0001');
+console.log('AG=' + JSON.stringify({ id: a._id, number: a.number, title: a.title, status: a.status, createdAt: a.createdAt, sentAt: a.sentAt, completedAt: a.completedAt, createdBy: a.createdBy, contentHash: (a.contentHash||'').slice(0,12), parties: { A: a.parties?.partyA?.name, Ae: a.parties?.partyA?.email, B: a.parties?.partyB?.name, Be: a.parties?.partyB?.email } }, null, 1));
+const sg = signers.filter((s) => String(s.agreementId) === String(a._id));
+console.log('SIGNERS=' + JSON.stringify(sg.map((s) => ({ email: s.email, label: s.label, signed: s.signed, signedAt: s.signedAt || null, hasToken: Boolean(s.accessTokenEnc || s.accessTokenHash), viewedAt: s.viewedAt || null })), null, 1));
+const ev = events.filter((e) => String(e.agreementId) === String(a._id));
+console.log('EVENTS=' + JSON.stringify(ev.map((e) => ({ type: e.type, at: e.at })), null, 1));
+console.log('PARTIES=' + JSON.stringify(parties.map((p) => ({ id: p._id, name: p.name, email: p.email, isSelf: p.isSelf }))));

@@ -1,0 +1,126 @@
+// Copy these into the host app's prisma/schema.prisma.
+// Provider: mongodb. Keep the ObjectId defaults.
+
+model Agreement {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  number       String    @unique
+  createdById  String    @db.ObjectId
+  title        String
+  category       String?
+  body         String
+  consentText  String
+  titleEn        String?
+  bodyEn         String?
+  consentTextEn  String?
+  lang           String?
+  status       String    @default("DRAFT")
+  contentHash  String?
+  revision     Int       @default(0)
+  expiresAt    DateTime?
+  sentAt       DateTime?
+  completedAt  DateTime?
+  voidedAt     DateTime?
+  voidReason   String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  language     String?
+
+  @@index([createdById, createdAt])
+  @@index([status, createdAt])
+}
+
+model AgreementSigner {
+  id               String    @id @default(auto()) @map("_id") @db.ObjectId
+  agreementId      String    @db.ObjectId
+  email            String
+  label            String?
+  labelEn          String?
+  order            Int       @default(0)
+
+  signedName       String?
+  signedIp         String?
+  signatureHash    String?
+  signedAt         DateTime?
+  emailVerifiedAt  DateTime?
+  signatureImage   String?
+  ipHash           String?
+  uaHash           String?
+  contentHash      String?
+
+  accessTokenHash  String?   @unique
+  accessTokenEnc   String?
+  accessCodeHash   String?
+  accessPatternHash String?
+  tsaUrl           String?
+  tsaTime          String?
+  tsaToken         String?
+  unlockAttempts   Int      @default(0)
+  codeHash         String?
+  codeExpiresAt    DateTime?
+  codeAttempts     Int       @default(0)
+  codeSentAt       DateTime?
+
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  language         String?
+
+  @@unique([agreementId, email])
+  @@index([agreementId, order])
+  @@index([email])
+}
+
+model SigningEvent {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  agreementId String   @db.ObjectId
+  signerId    String?
+  type        String
+  at          DateTime @default(now())
+  ipHash      String?
+  meta        String?
+
+  @@index([agreementId, at])
+  language  String?
+}
+
+model User {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+  language  String?
+}
+
+model Session {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @db.ObjectId
+  tokenHash String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  language  String?
+}
+
+model LoginCode {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String
+  codeHash  String
+  expiresAt DateTime
+  attempts  Int      @default(0)
+  createdAt DateTime @default(now())
+
+  language  String?
+
+  @@index([email, createdAt])
+}
+
+// Singleton; _id is the literal string "gate".
+model AdminGate {
+  id        String   @id @map("_id")
+  p1        String?
+  p2        String?
+  createdAt DateTime?
+  updatedAt DateTime?
+}
